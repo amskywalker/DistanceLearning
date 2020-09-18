@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Aula extends Migration
+class CreateClassTable  extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,11 @@ class Aula extends Migration
     {
         Schema::create('Class', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->integer('quantity');
+            $table->text('content');
+            $table->integer('type');
+            $table->string('plataform',50);
             $table->timestamps();
         });
     }
