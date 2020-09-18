@@ -13,7 +13,7 @@ class CreateDisciplineTable extends Migration
      */
     public function up()
     {
-        Schema::create('Discipline', function (Blueprint $table) {
+        Schema::create('disciplines', function (Blueprint $table) {
             $table->id();
             $table->foreignId('class_id');
             $table->string('name', 50);

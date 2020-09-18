@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClassTable  extends Migration
+class CreateRemoteClassTable  extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateClassTable  extends Migration
      */
     public function up()
     {
-        Schema::create('Class', function (Blueprint $table) {
+        Schema::create('remote_classes', function (Blueprint $table) {
             $table->id();
             $table->date('date');
             $table->integer('quantity');
