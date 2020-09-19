@@ -5,18 +5,31 @@ namespace App\Http\Controllers;
 use App\RemoteClass;
 use Illuminate\Http\Request;
 
-use function GuzzleHttp\Promise\all;
-
 class ClassController extends Controller
 {
+    private $remoteClass;
+    /**
+     * 
+     * 
+     */
+    public function __construct(RemoteClass $remoteClass)
+    {
+        $this->remoteClass = $remoteClass;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(RemoteClass $remote)
+    public function index()
     {
-        return response()->json(['data' => $remote->all(),'status' => 200]);
+        $count = $this->remoteClass->where('id', '>', 0)->count();
+
+        if ($count > 0) {
+            return response()->json([$this->remoteClass->paginate(10), 'status' => 200]);
+        } else {
+            return response()->json(['message' => 'Nenhum dado encontrado', 'status' => 200]);
+        }
     }
 
     /**
@@ -38,7 +51,11 @@ class ClassController extends Controller
      */
     public function show($id)
     {
-        //
+        if ($this->remoteClass->where('id', $id)->exists()) {
+            return response()->json(['data' => $this->remoteClass->where('id', $id)->first(), 'status' => 200]);
+        } else {
+            return response()->json(['message' => 'Data not found', 'status' => 200]);
+        }
     }
 
     /**
