@@ -22,11 +22,10 @@ class DisciplineController extends Controller
     {
         $count = $this->discipline->where('id', '>', 0)->count();
 
-
         if ($count > 0) {
-            return response()->json([$this->discipline->paginate(10),'status' => 200]);
-        }else{
-            return response()->json(['message' => 'Nenhum dado encontrado','status' => 200]);
+            return response()->json([$this->discipline->paginate(10), 'status' => 200]);
+        } else {
+            return response()->json(['message' => 'Nenhum dado encontrado', 'status' => 200]);
         }
     }
 
@@ -38,12 +37,6 @@ class DisciplineController extends Controller
      */
     public function store(Discipline $id)
     {
-        $count = Discipline::where('id', $id)->count();
-        if ($count > 0) {
-            return response()->json(['data' => Discipline::all(), 'status' => 200]);
-        } else {
-            return response()->json(['data' => Discipline::all(), 'status' => 200]);
-        }
     }
 
     /**
@@ -52,8 +45,13 @@ class DisciplineController extends Controller
      * @param  \App\Discipline  $discipline
      * @return \Illuminate\Http\Response
      */
-    public function show(Discipline $id)
+    public function show($id)
     {
+        if ($this->discipline->where('id', $id)->exists()) {
+            return response()->json(['data' => $this->discipline->where('id', $id)->first(), 'status' => 200]);
+        }else{
+            return response()->json(['message'=>'Data not found', 'status' => 200]); 
+        }
     }
 
     /**

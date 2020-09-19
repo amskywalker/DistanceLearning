@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::group(['prefix' => 'class'], function () {
     Route::get('/', 'ClassController@index');
+    Route::get('/{id}', 'ClassController@show');
 });
 Route::group(['prefix' => 'discipline'], function () {
     Route::get('/', 'DisciplineController@index');
+    Route::get('/{id}', 'DisciplineController@show');
 });
