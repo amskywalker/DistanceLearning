@@ -15,12 +15,15 @@ class CreateRemoteClassTable  extends Migration
     {
         Schema::create('remote_classes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('disciplines_id');
             $table->date('date');
             $table->integer('quantity');
             $table->text('content');
             $table->integer('type');
             $table->string('plataform',50);
             $table->timestamps();
+            $table->foreign('disciplines_id')->references('id')->on('disciplines');	
+
         });
     }
 
