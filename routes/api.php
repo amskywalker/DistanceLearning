@@ -22,6 +22,12 @@ Route::group(['prefix' => 'class'], function () {
     Route::get('/{id}', 'ClassController@show');
 });
 Route::group(['prefix' => 'discipline'], function () {
-    Route::get('/', 'DisciplineController@index');
-    Route::get('/{id}', 'DisciplineController@show');
+
+    Route::post('/', 'DisciplineController@create');
+    Route::put('/', 'DisciplineController@update');
+    Route::get('/', 'DisciplineController@list');
+    Route::get('/{id}', 'DisciplineController@get');
+
+    Route::get('/{id}/classes', "DisciplineClassesController@listClasses");
+    
 });

@@ -9,12 +9,15 @@ class ClassController extends Controller
 {
     private $remoteClass;
     /**
-     * 
-     * 
+     *
+     *
      */
     public function __construct(RemoteClass $remoteClass)
     {
         $this->remoteClass = $remoteClass;
+    }
+    public function views(){
+        return view('registerAulas');
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +29,7 @@ class ClassController extends Controller
         $count = $this->remoteClass->where('id', '>', 0)->count();
 
         if ($count > 0) {
-            return response()->json([$this->remoteClass->paginate(10), 'status' => 200]);
+            return response()->json([$this->remoteClass->paginate(4), 'status' => 200]);
         } else {
             return response()->json(['message' => 'Nenhum dado encontrado', 'status' => 200]);
         }
@@ -40,7 +43,16 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->remoteClass->disciplines_id = 137;
+        $this->remoteClass->date = $request->date;
+        $this->remoteClass->quantity = $request->quantity;
+        $this->remoteClass->content = $request->content;
+        $this->remoteClass->type = $request->type;
+        $this->remoteClass->plataform = $request->plataform;
+
+        $this->remoteClass->save();
+
+        return redirect()->route('form')->with('status', 'Aula Registrada');;
     }
 
     /**
@@ -80,4 +92,5 @@ class ClassController extends Controller
     {
         //
     }
+
 }
