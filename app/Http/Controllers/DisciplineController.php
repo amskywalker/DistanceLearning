@@ -31,10 +31,35 @@ class DisciplineController extends Controller
      * @param  \App\Discipline  $discipline
      * @return \Illuminate\Http\Response
      */
-    public function delete(Discipline $discipline)
+    public function delete($id)
     {
-        return response()->json(['message' => 'New features coming soon', 'code' => 200]);
-    }  
+
+        if ($this->discipline->where('id', $id)->exists()) {
+            $data = $this->discipline->find($id);
+            $data->delete();
+            return response()->json(
+                [
+                    'sucess' =>
+                    [
+                        "code" => 200,
+                        "message" => "Successfully deleted",
+                        "status" => "SUCESS"
+                    ]
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    "error" =>
+                    [
+                        "code" => 404,
+                        "message" => "Requested entity was not found",
+                        "status" => "NOT_FOUND"
+                    ]
+                ]
+            );
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -45,9 +70,25 @@ class DisciplineController extends Controller
     public function get($id)
     {
         if ($this->discipline->where('id', $id)->exists()) {
-            return response()->json(['data' => $this->discipline->where('id', $id)->first(), 'status' => 200]);
-        }else{
-            return response()->json(['message'=>'Data not found', 'status' => 200]); 
+
+            return response()->json(
+                [
+                    "discipline" => $this->discipline->where('id', $id)->first(),
+                    "code" => 200,
+                    "status" => "SUCCESS"
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    "error" =>
+                    [
+                        "code" => 404,
+                        "message" => "Requested entity was not found",
+                        "status" => "NOT_FOUND"
+                    ]
+                ]
+            );
         }
     }
 
@@ -61,9 +102,24 @@ class DisciplineController extends Controller
         $count = $this->discipline->where('id', '>', 0)->count();
 
         if ($count > 0) {
-            return response()->json([$this->discipline->paginate(4), 'status' => 200]);
+            return response()->json(
+                [
+                    "disciplines" =>  $this->discipline->get(),
+                    "code" => 200,
+                    "status" => "SUCCESS"
+                ]
+            );
         } else {
-            return response()->json(['message' => 'Data not found', 'status' => 200]);
+            return response()->json(
+                [
+                    "error" =>
+                    [
+                        "code" => 404,
+                        "message" => "Requested entity was not found",
+                        "status" => "NOT_FOUND"
+                    ]
+                ]
+            );
         }
     }
 
@@ -78,7 +134,4 @@ class DisciplineController extends Controller
     {
         return response()->json(['message' => 'New features coming soon', 'code' => 200]);
     }
-
-
-
 }
