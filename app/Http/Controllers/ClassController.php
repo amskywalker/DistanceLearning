@@ -88,9 +88,26 @@ class ClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        if ($this->remoteClass->where('id', $id)->exists()) {
+            $data = $this->remoteClass->find($id);
+            echo $data;
+            $data->delete();
+            return response()->json(['message' => 'Successfully deleted', 'status' => 200]);
+        } else {
+            return response()->json(['message' => 'Data not found', 'status' => 200]);
+        }
     }
 
+    public function todayClasses(){
+        if($this->remoteClass->today()->count() > 0){
+            
+            return response()->json([
+                'classes' => $this->remoteClass->today(),
+                'code' => 200,
+                'status' => "SUCESS"
+            ]);
+        }
+    }
 }

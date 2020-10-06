@@ -19,15 +19,17 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::group(['prefix' => 'class'], function () {
     Route::get('/', 'ClassController@index');
+    Route::get('/today','ClassController@todayClasses');
     Route::get('/{id}', 'ClassController@show');
 });
 Route::group(['prefix' => 'discipline'], function () {
 
     Route::post('/', 'DisciplineController@create');
-    Route::put('/', 'DisciplineController@update');
     Route::get('/', 'DisciplineController@list');
     Route::get('/{id}', 'DisciplineController@get');
+    Route::put('/', 'DisciplineController@update');
+    Route::delete('/{id}', 'DisciplineController@delete');
 
-    Route::get('/{id}/classes', "DisciplineClassesController@listClasses");
+    Route::get('/{id}/classes', "DisciplineClassesController@listValids");
     
 });
