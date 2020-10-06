@@ -16,18 +16,25 @@ class DisciplineClassesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function listClasses($id)
+    public function listValids($id)
     {
         if ($this->discipline->where('id', $id)->exists()) {
-            $discipline = $this->discipline->where('id', $id)->first();    
-               if ($discipline->remote_classes()->get()->count() > 0) {
-                   $remoteclass = $discipline->remote_classes()->get();
-                   return response()->json(['data' => $remoteclass, 'status' => 200]);
-               }else{
-                return response()->json(['data' => 'This course has no remote classes', 'status' => 200]);
-               }
-        }else{
-            return response()->json(['message'=>'Data not found', 'status' => 200]); 
+
+            $discipline = $this->discipline->where('id', $id)->first();
+            if ($discipline->valids()->get()->count() > 0) {
+                $remoteclass = $discipline->valids()->get();
+                return response()->json([
+                    'data' => $remoteclass,
+                    'status' => 200
+                ]);
+            } else {
+                return response()->json([
+                    'data' => 'This course has no remote classes',
+                    'status' => 200
+                ]);
+            }
+        } else {
+            return response()->json(['message' => 'Data not found', 'status' => 200]);
         }
     }
 
