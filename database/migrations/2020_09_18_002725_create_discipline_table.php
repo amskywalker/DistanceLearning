@@ -17,6 +17,7 @@ class CreateDisciplineTable extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('teacher', 50);
+            $table->string('openinghours', 50)->nullable();
             $table->timestamps();
         });
     }
