@@ -20,9 +20,24 @@ class DisciplineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Discipline $id)
+    public function create(Request $request)
     {
-        return response()->json(['message' => 'New features coming soon', 'code' => 200]);
+        $this->discipline->name = $request->name;
+        $this->discipline->openinghours = $request->openinghours;
+        $this->discipline->teacher = $request->teacher;
+
+        $this->discipline->save();
+
+        return response()->json(
+            [
+                'sucess' =>
+                [
+                    "code" => 200,
+                    "message" => "Successfully REGISTERED",
+                    "status" => "SUCESS"
+                ]
+            ]
+        );
     }
 
     /**
