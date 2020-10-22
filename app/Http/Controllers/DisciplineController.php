@@ -22,6 +22,7 @@ class DisciplineController extends Controller
      */
     public function create(Request $request)
     {
+        $this->discipline->id = $request->id;
         $this->discipline->name = $request->name;
         $this->discipline->openinghours = $request->openinghours;
         $this->discipline->teacher = $request->teacher;
