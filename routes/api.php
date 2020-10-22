@@ -24,6 +24,9 @@ Route::group(['prefix' => 'class'], function () {
 });
 Route::group(['prefix' => 'discipline'], function () {
 
+    // Route::get('/data={data}', function ($data) {
+    //     return "Olá World".$data;
+    // });
     Route::post('/', 'DisciplineController@create');
     Route::get('/', 'DisciplineController@list');
     Route::get('/{id}', 'DisciplineController@get');
