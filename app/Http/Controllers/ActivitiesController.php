@@ -24,7 +24,6 @@ class ActivitiesController extends Controller
 
     public function create(Request $request)
     {
-        $this->activity->id = $request->id;
         $this->activity->disciplines_id = $request->disciplines_id;
         $this->activity->delivery_date = $request->delivery_date;
         $this->activity->description = $request->description;
