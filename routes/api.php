@@ -17,9 +17,13 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+Route::group(['prefix' => 'activities'], function () {
+    Route::get('/create', 'ActivitiesController@create');
+});
 Route::group(['prefix' => 'class'], function () {
     Route::get('/', 'ClassController@index');
-    Route::get('/today','ClassController@todayClasses');
+    Route::get('/today', 'ClassController@todayClasses');
     Route::get('/{id}', 'ClassController@show');
 });
 Route::group(['prefix' => 'discipline'], function () {
@@ -34,5 +38,4 @@ Route::group(['prefix' => 'discipline'], function () {
     Route::delete('/{id}', 'DisciplineController@delete');
 
     Route::get('/{id}/classes', "DisciplineClassesController@listValids");
-    
 });
