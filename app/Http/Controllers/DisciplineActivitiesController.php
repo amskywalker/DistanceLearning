@@ -23,7 +23,7 @@ class DisciplineActivitiesController extends Controller
             $discipline = $this->discipline->where('id', $id)->first();
             
             if ($discipline->activities()->get()->count() > 0) {
-                $activities = $discipline->valids()->get();
+                $activities = $discipline->activities()->get();
                 return response()->json([
                     'data' => $activities,
                     'status' => 200
