@@ -37,5 +37,9 @@ Route::group(['prefix' => 'discipline'], function () {
     Route::put('/', 'DisciplineController@update');
     Route::delete('/{id}', 'DisciplineController@delete');
 
+
+
     Route::get('/{id}/classes', "DisciplineClassesController@listValids");
+
+    Route::get('/{id}/activities', "DisciplineActivitiesController@list");
 });
