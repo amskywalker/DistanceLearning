@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RemoteClass extends Model
 {
+    private $table = "remote_classes";
     
     public function disciplines()
     {  
