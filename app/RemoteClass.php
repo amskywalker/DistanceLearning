@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class RemoteClass extends Model
 {
-    private $table = "remote_classes";
-    
+    protected $table = "remote_classes";
+
     public function disciplines()
     {  
         return $this->belongsTo(Discipline::class,'disciplines_id','id');  

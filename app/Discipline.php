@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Discipline extends Model
 {
-    private $table = "disciplines";
+    protected $table = "disciplines";
     /**
     * Function to get all remote classes
     */
