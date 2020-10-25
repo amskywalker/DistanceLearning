@@ -17,9 +17,30 @@ class ActivitiesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function list()
     {
-        //
+        $count = $this->activity->where('id', '>', 0)->count();
+
+        if ($count > 0) {
+            return response()->json(
+                [
+                    "activities" =>  $this->activity->get(),
+                    "code" => 200,
+                    "status" => "SUCCESS"
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    "error" =>
+                    [
+                        "code" => 404,
+                        "message" => "Requested entity was not found",
+                        "status" => "NOT_FOUND"
+                    ]
+                ]
+            );
+        }
     }
 
     public function create(Request $request)

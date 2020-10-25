@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group(['prefix' => 'activities'], function () {
-    Route::post('/create', 'ActivitiesController@create');
+    Route::get('/', 'ActivitiesController@list');
+    Route::post('/', 'ActivitiesController@create');
 });
 Route::group(['prefix' => 'class'], function () {
     Route::get('/', 'ClassController@index');

@@ -16,9 +16,6 @@ class ClassController extends Controller
     {
         $this->remoteClass = $remoteClass;
     }
-    public function views(){
-        return view('registerAulas');
-    }
     /**
      * Display a listing of the resource.
      *
