@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'activities'], function () {
     Route::get('/', 'ActivitiesController@list');
     Route::post('/', 'ActivitiesController@create');
+    Route::delete('/{id}', 'ActivitiesController@delete');
 });
+
 Route::group(['prefix' => 'class'], function () {
     Route::get('/', 'ClassController@index');
     Route::get('/today', 'ClassController@todayClasses');

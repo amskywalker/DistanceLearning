@@ -92,8 +92,32 @@ class ActivitiesController extends Controller
      * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Activity $activity)
+    public function destroy($id)
     {
-        //
+        if ($this->activity->where('id', $id)->exists()) {
+            $data = $this->activity->find($id);
+            $data->delete();
+            return response()->json(
+                [
+                    'sucess' =>
+                    [
+                        "code" => 200,
+                        "message" => "Successfully deleted",
+                        "status" => "SUCESS"
+                    ]
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    "error" =>
+                    [
+                        "code" => 404,
+                        "message" => "Requested entity was not found",
+                        "status" => "NOT_FOUND"
+                    ]
+                ]
+            );
+        }
     }
 }
