@@ -92,7 +92,7 @@ class ActivitiesController extends Controller
      * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         if ($this->activity->where('id', $id)->exists()) {
             $data = $this->activity->find($id);
