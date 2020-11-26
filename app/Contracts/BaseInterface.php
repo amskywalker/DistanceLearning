@@ -30,10 +30,10 @@ interface BaseInterface
      * @param $array
      * @return mixed
      */
-    public function update($id, $array);
+    public function update($id, array $array);
 
     /**
-     * Método responsável por deletar um objeto especifico do banco
+     * Method that deletes a specific object.
      * @param $id
      * @return mixed
      */

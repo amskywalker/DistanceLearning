@@ -2,122 +2,66 @@
 
 namespace App\Http\Controllers;
 
-use App\Activity;
-use Illuminate\Http\Request;
+use App\Services\Activities\IndexActivitiesService;
+use App\Services\Activities\StoreActivitiesService;
+use App\Services\Activities\ShowActivitiesService;
+use App\Services\Activities\UpdateActivitiesService;
+use App\Services\Activities\DeleteActivitiesService;
+use App\Http\Requests\Activities\StoreActivitiesRequest;
+use App\Http\Requests\Activities\UpdateActivitiesRequest;
 
 class ActivitiesController extends Controller
 {
-    private $activity;
-
-    public function __construct(Activity $activity){
-        $this->activity = $activity;
-    }
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Get all activities
+     * @param \App\Services\Activities\IndexActivitiesService
      */
-    public function list()
+    public function index(IndexActivitiesService $indexActivitiesService)
     {
-        $count = $this->activity->where('id', '>', 0)->count();
-
-        if ($count > 0) {
-            return response()->json(
-                [
-                    "activities" =>  $this->activity->get(),
-                    "code" => 200,
-                    "status" => "SUCCESS"
-                ]
-            );
-        } else {
-            return response()->json(
-                [
-                    "error" =>
-                    [
-                        "code" => 404,
-                        "message" => "Requested entity was not found",
-                        "status" => "NOT_FOUND"
-                    ]
-                ]
-            );
-        }
-    }
-
-    public function create(Request $request)
-    {
-        $this->activity->disciplines_id = $request->disciplines_id;
-        $this->activity->delivery_date = $request->delivery_date;
-        $this->activity->description = $request->description;
-
-        $this->activity->save();
-
-        return response()->json(
-            [
-                'sucess' =>
-                [
-                    "code" => 200,
-                    "message" => "Successfully REGISTERED",
-                    "status" => "SUCESS"
-                ]
-            ]
-        );
+        $response = $indexActivitiesService->run();
+        return response($response);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Activity  $activity
-     * @return \Illuminate\Http\Response
+     * Create a new activity
+     * @param \App\Http\Requests\Activities\StoreActivitiesRequest
+     * @param \App\Services\Activities\StoreActivitiesService
      */
-    public function show(Activity $activity)
+    public function store(StoreActivitiesRequest $storeActivitiesRequest, StoreActivitiesService $storeActivitiesService)
     {
-        //
+        $data = $storeActivitiesRequest->validated();
+        $response = $storeActivitiesService->run($data);
+        return response($response);
     }
-
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Activity  $activity
-     * @return \Illuminate\Http\Response
+     * Get the activity by id
+     * @param integer id
+     * @param \App\Services\Activities\ShowActivitiesService
      */
-    public function update(Request $request, Activity $activity)
+    public function show($id, ShowActivitiesService $showActivitiesService)
     {
-        //
+        $response = $showActivitiesService->run($id);
+        return response($response);
     }
-
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Activity  $activity
-     * @return \Illuminate\Http\Response
+     * Update the activity by id
+     * @param integer id
+     * @param \App\Http\Requests\Activities\UpdateActivitiesRequest
      */
-    public function delete($id)
+    public function update($id, UpdateActivitiesRequest $updateActivitiesRequest, UpdateActivitiesService $updateActivitiesService)
     {
-        if ($this->activity->where('id', $id)->exists()) {
-            $data = $this->activity->find($id);
-            $data->delete();
-            return response()->json(
-                [
-                    'sucess' =>
-                    [
-                        "code" => 200,
-                        "message" => "Successfully deleted",
-                        "status" => "SUCESS"
-                    ]
-                ]
-            );
-        } else {
-            return response()->json(
-                [
-                    "error" =>
-                    [
-                        "code" => 404,
-                        "message" => "Requested entity was not found",
-                        "status" => "NOT_FOUND"
-                    ]
-                ]
-            );
-        }
+        $data = $updateActivitiesRequest->validated();
+        $response = $updateActivitiesService->run($id, $data);
+        return response($response);
+    }
+    /**
+     * Delete the acitivity by id
+     * @param integer id
+     * @param \App\Services\Activities\DeleteActivitiesService
+     */
+    public function destroy($id, DeleteActivitiesService $deleteActivitiesService)
+    {
+        $response = $deleteActivitiesService->run($id);
+        return response($response);
     }
 }

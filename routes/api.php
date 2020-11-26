@@ -1,48 +1,28 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+use App\Http\Controllers\DisciplinesController;
+use App\Http\Controllers\ActivitiesController;
+use App\Http\Controllers\DisciplineActivitiesController;
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
+Route::group(['prefix' => 'disciplines'], function () {
+    Route::get('/', [DisciplinesController::class, 'index']);
+    Route::post('/', [DisciplinesController::class, 'store']);
+    Route::get('/{id}', [DisciplinesController::class, 'show']);
+    Route::put('/{id}', [DisciplinesController::class, 'update']);
+    Route::delete('/{id}', [DisciplinesController::class, 'destroy']);
+
+    Route::get('/{id}/activities', [DisciplineActivitiesController::class, 'index']);
+});
+
 Route::group(['prefix' => 'activities'], function () {
-    Route::get('/', 'ActivitiesController@list');
-    Route::post('/', 'ActivitiesController@create');
-    Route::delete('/{id}', 'ActivitiesController@delete');
-});
-
-Route::group(['prefix' => 'class'], function () {
-    Route::get('/', 'ClassController@index');
-    Route::get('/today', 'ClassController@todayClasses');
-    Route::get('/{id}', 'ClassController@show');
-});
-Route::group(['prefix' => 'discipline'], function () {
-
-    // Route::get('/data={data}', function ($data) {
-    //     return "Olá World".$data;
-    // });
-    Route::post('/', 'DisciplineController@create');
-    Route::get('/', 'DisciplineController@list');
-    Route::get('/{id}', 'DisciplineController@get');
-    Route::put('/', 'DisciplineController@update');
-    Route::delete('/{id}', 'DisciplineController@delete');
-
-
-
-    Route::get('/{id}/classes', "DisciplineClassesController@listValids");
-
-    Route::get('/{id}/activities', "DisciplineActivitiesController@list");
+    Route::get('/', [ActivitiesController::class, 'index']);
+    Route::post('/', [ActivitiesController::class, 'store']);
+    Route::get('/{id}', [ActivitiesController::class, 'show']);
+    Route::put('/{id}', [ActivitiesController::class, 'update']);
+    Route::delete('/{id}', [ActivitiesController::class, 'destroy']);
 });
