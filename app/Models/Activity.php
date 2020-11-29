@@ -2,11 +2,25 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
     protected $table = 'activities';
-    protected $dates = ['delivery_date'];
+    protected $casts = [
+        'delivery_date' => 'datetime:dd/mm/yyyy',
+    ];
     public $fillable = ['title', 'disciplines_id', 'description', 'delivery_date'];
+
+    public function setDeliveryDateAttribute($value)
+    {
+        return $this->attributes['delivery_date'] =
+            Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+    }
+    public function getDeliveryDateAttribute($value)
+    {
+        return $this->attributes['delivery_date'] =
+            Carbon::parse($value)->format('d/m/Y');
+    }
 }

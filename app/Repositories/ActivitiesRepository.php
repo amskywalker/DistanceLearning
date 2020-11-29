@@ -24,8 +24,7 @@ class ActivitiesRepository extends AbstractRepository implements ActivitiesInter
             })
             ->when(!empty(request()->get('week')), function ($query) {
                 return $query
-                ->where(DB::raw('cast(delivery_date as date)'), '>=', today()->toDateString())
-                ->where(DB::raw('cast(delivery_date as date)'), '<=', today()->addDays(7)->toDateString());
+                ->whereBetween(DB::raw('cast(delivery_date as date)'), [today()->toDateString(), today()->addDays(7)->toDateString()]);
             })
             ->latest('id')
             ->get();

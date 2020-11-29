@@ -3,6 +3,7 @@
 namespace App\Services\Activities;
 
 use App\Contracts\ActivitiesInterface;
+use Carbon\Carbon;
 
 class IndexActivitiesService
 {
