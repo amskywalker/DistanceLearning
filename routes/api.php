@@ -1,13 +1,16 @@
 <?php
 
+use App\Http\Controllers\API\ActivitiesController;
+use App\Http\Controllers\API\DisciplineActivitiesController;
+use App\Http\Controllers\API\DisciplinesController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DisciplinesController;
-use App\Http\Controllers\ActivitiesController;
-use App\Http\Controllers\DisciplineActivitiesController;
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+*/
 
 Route::group(['prefix' => 'disciplines'], function () {
     Route::get('/', [DisciplinesController::class, 'index']);

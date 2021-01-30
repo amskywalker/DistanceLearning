@@ -12,9 +12,9 @@ class Discipline extends Model
     /**
      * Function to get activities to disciplines
      */
-    public function activities()
+    public function activities(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Activity::class, 'disciplines_id', 'id');
     }
-   
+
 }

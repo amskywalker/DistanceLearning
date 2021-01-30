@@ -13,12 +13,12 @@ class Activity extends Model
     ];
     public $fillable = ['title', 'disciplines_id', 'description', 'delivery_date'];
 
-    public function setDeliveryDateAttribute($value)
+    public function setDeliveryDateAttribute($value): string
     {
         return $this->attributes['delivery_date'] =
             Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
     }
-    public function getDeliveryDateAttribute($value)
+    public function getDeliveryDateAttribute($value): string
     {
         return $this->attributes['delivery_date'] =
             Carbon::parse($value)->format('d/m/Y');
