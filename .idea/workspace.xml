@@ -4,8 +4,6 @@
     <list default="true" id="79ea636f-21dc-4f69-b981-ee0789d81a54" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/resources/css/app-layout.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/js/Components/Sidebar/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Components/Logo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Logo.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" afterDir="false" />
@@ -198,7 +196,7 @@
       <workItem from="1612032014434" duration="477000" />
       <workItem from="1612032578997" duration="13000" />
       <workItem from="1612032661460" duration="694000" />
-      <workItem from="1612160750977" duration="2105000" />
+      <workItem from="1612160750977" duration="2197000" />
     </task>
     <task id="LOCAL-00001" summary="Criando AuthLayout e componentizando Logo">
       <created>1612161290212</created>
@@ -207,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612161290212</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Criando uma sidebar e sidebar links">
+      <created>1612162929662</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1612162929662</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +232,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Criando AuthLayout e componentizando Logo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Criando AuthLayout e componentizando Logo" />
+    <MESSAGE value="Criando uma sidebar e sidebar links" />
+    <option name="LAST_COMMIT_MESSAGE" value="Criando uma sidebar e sidebar links" />
   </component>
 </project>
