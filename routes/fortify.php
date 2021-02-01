@@ -37,7 +37,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
             $limiter ? 'throttle:'.$limiter : null,
         ]));
 
-    Route::get('/sair', [AuthenticatedSessionController::class, 'destroy'])
+    Route::post('/sair', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
     // Password Reset...
