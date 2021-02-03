@@ -17,7 +17,6 @@ mix.js('resources/js/app.js', 'public/js').vue()
         require('tailwindcss'),
         require('autoprefixer'),
     ])
-    .styles('resources/css/app-layout.css','public/css/layout/app-layout.css')
     .webpackConfig(require('./webpack.config'));
 
 if (mix.inProduction()) {

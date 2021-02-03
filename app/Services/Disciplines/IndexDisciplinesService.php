@@ -23,11 +23,8 @@ class IndexDisciplinesService
     public function run()
     {
         try {
-            return [
-                'data' => $this->disciplinesInterface->all(),
-                'status' => '200'
-            ];
-        } catch (\Exception $e) {
+            return $this->disciplinesInterface->all();
+        } catch (Exception $e) {
             return [
                 'errors' => [
                     'title' => $e->getMessage(),

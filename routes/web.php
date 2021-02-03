@@ -19,4 +19,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
+Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'disciplines'], function () {
+    Route::get('/', [App\Http\Controllers\WEBAPP\DisciplinesController::class, 'index'])->name('disciplines.index');
+});
+
+
 require_once __DIR__ .'/fortify.php';

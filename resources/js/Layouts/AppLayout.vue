@@ -2,7 +2,7 @@
   <div class="app h-screen w-screen bg-gray-100">
     <sidebar>
       <template v-slot:study-options-links>
-        <sidebar-links href="">
+        <sidebar-links :href="route('disciplines.index')">
           Disciplinas
         </sidebar-links>
         <sidebar-links href="">
