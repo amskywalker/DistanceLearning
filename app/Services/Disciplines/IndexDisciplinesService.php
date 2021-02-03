@@ -24,7 +24,7 @@ class IndexDisciplinesService
     {
         try {
             return $this->disciplinesInterface->all();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return [
                 'errors' => [
                     'title' => $e->getMessage(),
